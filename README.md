@@ -50,21 +50,6 @@ Perfect for researchers, data scientists, and anyone curious about Swiss demogra
    
    Navigate to `http://localhost:3000` and start exploring!
 
-### Manual Docker Run
-
-If you prefer more control:
-
-```bash
-# Build the image
-docker build -t bfs-ocr -f docker/Dockerfile .
-
-# Run Marimo notebook server
-docker run -it --rm -p 3000:3000 -v $(pwd):/app bfs-ocr
-
-# Or get a bash shell
-docker run -it --rm -v $(pwd):/app bfs-ocr bash
-```
-
 ## 📁 Project Structure
 
 ```
