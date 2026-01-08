@@ -125,37 +125,6 @@ docker compose -f docker/docker-compose.yml up
 - **[PyMuPDF](https://pymupdf.readthedocs.io/)** - PDF rendering and extraction
 - **[Pillow](https://pillow.readthedocs.io/)** - Image processing
 
-## 🧪 Development
-
-### Local Setup (without Docker)
-
-```bash
-# Install uv
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Create virtual environment and install dependencies
-uv sync
-
-# Install with OCR support (includes PyTorch & transformers)
-uv sync --extra ocr
-
-# Run tests
-uv run pytest
-
-# Lint code
-uv run ruff check .
-
-# Type checking
-uv run mypy src/
-```
-
-### Pre-commit Hooks
-
-```bash
-uv run pre-commit install
-uv run pre-commit run --all-files
-```
-
 ## 📊 Data Sources
 
 All data comes from the **Swiss Federal Statistical Office (BFS)** / **Office fédéral de la statistique (OFS)**:
