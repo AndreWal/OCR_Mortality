@@ -134,7 +134,7 @@ docker compose -f docker/docker-compose.yml up
 ### OCR & ML (Optional)
 - **[PyTorch](https://pytorch.org/)** - Deep learning framework
 - **[Transformers](https://huggingface.co/docs/transformers)** - State-of-the-art NLP models
-- **[Qwen-VL](https://huggingface.co/Qwen)** - Vision-language model for table understanding
+- **[Dots.ocr](https://huggingface.co/rednote-hilab/dots.ocr)** - Vision-language model for table understanding
 
 ### Document Processing
 - **[PyMuPDF](https://pymupdf.readthedocs.io/)** - PDF rendering and extraction
