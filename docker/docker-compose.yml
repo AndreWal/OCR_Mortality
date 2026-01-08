@@ -1,0 +1,10 @@
+services:
+  marimo:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../:/app
+    working_dir: /app

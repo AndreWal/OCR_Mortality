@@ -1,0 +1,80 @@
+[project]
+name = "ocr-pipeline"
+version = "0.1.0"
+description = "Download BFS PDFs, extract tables via OCR-LLM, and export analysis-ready datasets."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "requests>=2.32",
+  "tenacity>=9.0",
+  "tqdm>=4.66",
+  "pymupdf>=1.24",
+  "pillow>=10.4",
+  "pandas>=2.2",
+  "pyarrow>=17.0",
+  "polars>=1.6",
+  "duckdb>=1.0",
+  "typer>=0.12",
+  "rich>=13.7",
+  "marimo>=0.3.6",
+]
+
+[project.optional-dependencies]
+ocr = [
+  "torch>=2.5.0",
+  "torchvision>=0.20.0",
+  "transformers>=4.46",
+  "accelerate>=0.34",
+  "bitsandbytes>=0.44; sys_platform == 'linux'",
+  "safetensors>=0.4",
+  "qwen-vl-utils>=0.0.10",
+]
+
+[project.scripts]
+bfs-download = "ocr_pipeline.cli:download"
+bfs-ocr      = "ocr_pipeline.cli:ocr"
+bfs-build    = "ocr_pipeline.cli:build_tables"
+
+[build-system]
+requires = ["uv_build>=0.9.22,<0.10.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+  "pytest>=8",
+  "ruff>=0.6",
+  "mypy>=1.11",
+  "pre-commit>=3.7",
+  "types-requests>=2.32",
+]
+
+[tool.uv]
+default-groups = ["dev"]
+
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu121"
+url = "https://download.pytorch.org/whl/cu121"
+explicit = true
+
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cu121", marker = "sys_platform == 'linux'" },
+  { index = "pytorch-cpu",  marker = "sys_platform != 'linux'" },
+]
+torchvision = [
+  { index = "pytorch-cu121", marker = "sys_platform == 'linux'" },
+  { index = "pytorch-cpu",  marker = "sys_platform != 'linux'" },
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
